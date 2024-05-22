@@ -1,0 +1,49 @@
+---
+import Layout from "@layouts/Static.astro";
+import site from "@data/site.json";
+---
+
+<Layout title="500">
+    <section class="bg-white dark:bg-gray-900">
+        <div
+            class="grid-cols-2 gap-8 content-center py-8 px-4 mx-auto max-w-screen-xl md:grid lg:py-16 lg:px-6"
+        >
+            <div class="self-center">
+                <h1 class="mb-4 text-2xl font-bold text-primary-600 dark:text-primary-500">
+                    {site.error_500.heading}
+                </h1>
+                <p
+                    class="mb-4 text-3xl tracking-tight font-bold text-gray-900 lg:mb-10 md:text-4xl dark:text-white"
+                >
+                    {site.error_500.content_textarea}
+                </p>
+
+                {
+                    site.error_500.links.items.length > 0 && (
+                        <>
+                            <p class="mb-4 text-gray-500 dark:text-gray-400">
+                                {site.error_500.links.text}
+                            </p>
+                            <ul class="flex items-center space-x-4 text-gray-500 dark:text-gray-400">
+                                {site.error_500.links.items.map((item) => (
+                                    <li>
+                                        <a
+                                            href={item.link_url}
+                                            class="underline hover:text-gray-900 dark:hover:text-white">
+                                            {item.link_text}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    )
+                }
+            </div>
+            <img
+                class="hidden mx-auto mb-4 md:flex"
+                src={site.error_500.image}
+                alt="404 Server Error"
+            />
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,48 @@
+---
+import Summary from "@components/blog/summary.astro";
+import BlogPagination from "@components/blog/pagination";
+import Layout from "@layouts/Layout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+    const tags: Record<string, any> = {};
+    const page = await getEntryBySlug("pages", "blog");
+    const posts = await getCollection("blog");
+
+    posts.forEach(({ data }) => {
+        if (Array.isArray(data.tags)) {
+            data.tags.forEach((tag) => (tags[tag] = true));
+        }
+    });
+
+    return Object.keys(tags).flatMap((tag) => {
+        const filteredPosts = posts.filter(
+            ({ data }) => data.tags && Array.isArray(data.tags) && data.tags.includes(tag),
+        );
+        return paginate(filteredPosts, {
+            params: { tag },
+            pageSize: page.data.page_size,
+        });
+    });
+}
+
+const tag = Astro.params.tag ?? "";
+const page = (await getEntryBySlug("pages", "blog")).data;
+page.title = tag[0].toUpperCase() + tag.slice(1);
+page.description = "";
+const pagination = Astro.props.page;
+const filteredPosts = pagination.data;
+---
+
+<Layout title={page.title} seo={page.seo} page_size={page.page_size}>
+    <div class="py-8 lg:py-16 wrapper">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {
+                filteredPosts &&
+                    filteredPosts.length > 0 &&
+                    filteredPosts.map((post) => <Summary post={post} />)
+            }
+        </div>
+        <BlogPagination pagination={pagination} />
+    </div>
+</Layout>

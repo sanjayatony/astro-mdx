@@ -1,0 +1,115 @@
+---
+import "@styles/tailwind.css";
+import Layout from "@layouts/Layout.astro";
+import Subscription from "@components/blog/subscription";
+import { getCollection } from "astro:content";
+
+const props = Astro.props.frontmatter ?? Astro.props;
+const { title, published_date, author, seo } = props;
+const content = Astro.props.body ?? Astro.props.rawContent();
+const wordCount = content.split(" ").length;
+const readingTime = Math.floor(wordCount / 183);
+const dateObj = new Date(published_date);
+const authorDomain = "https://simple-onion.cloudvent.net/profiles/";
+const authorSlug = author.toLowerCase().replace(/ /g, "-");
+const authorUrl = [authorDomain, authorSlug, "/"].join("");
+
+const posts = await getCollection("blog");
+const nextPosts = posts.filter((post) => post.data.is_featured);
+function timeToread(wordCount) {
+    const wordsPerMinute = 200;
+    const minutes = wordCount / wordsPerMinute;
+    const readTime = Math.ceil(minutes);
+    return readTime;
+}
+import { Image } from "astro:assets";
+import { getImageSrc } from "@helper/imageSrc";
+
+const src = getImageSrc(seo.featured_image);
+---
+
+<Layout {...props}>
+    <>
+        <div class="max-w-screen-xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8 px-4 md:px-0">
+                <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 md:w-8/12">
+                    <article>
+                        <header class="mb-4 lg:mb-6 max-w-[65ch] mx-auto">
+                            <div class="text-center mb-4">
+                                <span class="font-semibold">Published</span>
+                                <time class="text-gray-500"
+                                    >{
+                                        dateObj.toLocaleDateString(undefined, {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        })
+                                    }</time
+                                >&nbsp;by&nbsp;{author}
+                            </div>
+
+                            <h1
+                                class="mb-2 text-3xl font-extrabold leading-tight text-gray-900 lg:text-4xl dark:text-white text-center"
+                            >
+                                {title}
+                            </h1>
+                        </header>
+                        <div class="prose mx-auto">
+                            {
+                                seo.featured_image && (
+                                    <Image
+                                        class="rounded-lg"
+                                        src={src}
+                                        alt={seo.featured_image_alt || ""}
+                                        width={1200}
+                                        height={600}
+                                    />
+                                )
+                            }
+                            <slot />
+                        </div>
+                        <div class="mt-32">
+                            <h3 class="mb-6">Read Next</h3>
+                            <div class="space-y-6">
+                                {
+                                    nextPosts.map((post) => (
+                                        <div class="flex flex-row gap-4">
+                                            <Image
+                                                class="rounded-full w-32 h-32 object-cover"
+                                                src={post.data.seo.featured_image}
+                                                alt={
+                                                    post.data.seo.featured_image_alt ||
+                                                    post.data.title
+                                                }
+                                                width={128}
+                                                height={128}
+                                            />
+                                            <div class="space-y-4">
+                                                <a href={post.slug}>
+                                                    <strong>{post.data.title}</strong>
+                                                </a>
+                                                <p>{post.data.seo.page_description}</p>
+                                                <a
+                                                    href={post.slug}
+                                                    class="text-blue-500 inline-block">
+                                                    Read in{" "}
+                                                    {timeToread(post.body.split(" ").length)}
+                                                    minutes
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </article>
+                </main>
+                <aside class="py-8 lg:py-24 md:w-4/12">
+                    <div class="sticky top-2">
+                        <Subscription />
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </>
+</Layout>

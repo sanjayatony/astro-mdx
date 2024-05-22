@@ -1,0 +1,40 @@
+---
+const { component_id, heading, items, cta_link, cta_text } = Astro.props;
+const componentName = "features-list";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="py-8 md:py-24 wrapper">
+        <div class="rounded-lg shadow-lg p-16">
+            <h2 class="border-b border-primary-500 p-8">{heading}</h2>
+            <div class="mt-8 gap-4 grid md:grid-rows-5 md:grid-flow-col">
+                {
+                    items.map((item) => (
+                        <div class="flex gap-2 items-center text-gray-700 text-2xl font-medium">
+                            <svg
+                                width="14"
+                                height="15"
+                                viewBox="0 0 14 15"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.00878 13.4132C4.7803 13.4143 4.56052 13.307 4.39647 13.1142L0.264208 8.25363C0.181845 8.15616 0.116126 8.03997 0.0708037 7.91172C0.0254817 7.78346 0.00144401 7.64563 6.31568e-05 7.50611C-0.00272561 7.22434 0.086941 6.95276 0.249337 6.75113C0.411734 6.54949 0.633557 6.43432 0.866009 6.43094C1.09846 6.42756 1.3225 6.53625 1.48884 6.7331L5.01228 10.8758L12.5105 2.04852C12.6771 1.85167 12.9014 1.74309 13.134 1.74667C13.3666 1.75025 13.5885 1.86569 13.7509 2.06761C13.9133 2.26952 14.0029 2.54137 13.9999 2.82334C13.997 3.10531 13.9017 3.37432 13.7352 3.57117L5.6211 13.1142C5.45705 13.307 5.23727 13.4143 5.00878 13.4132Z"
+                                    fill="#0070F3"
+                                />
+                            </svg>
+
+                            <span class="">{item.text}</span>
+                        </div>
+                    ))
+                }
+                {
+                    cta_text && (
+                        <a href={cta_link} class="button primary w-auto mt-4">
+                            {cta_text}
+                        </a>
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</section>

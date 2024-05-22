@@ -1,0 +1,12 @@
+---
+const { component_id, full_content_html } = Astro.props;
+const componentName = "content-text";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="py-8 md:py-24 wrapper">
+        <div class="prose content-html mx-auto">
+            <Fragment set:html={full_content_html} />
+        </div>
+    </div>
+</section>

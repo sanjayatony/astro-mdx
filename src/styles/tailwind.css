@@ -1,0 +1,10 @@
+@import "./custom/fonts.css";
+
+@import "tailwindcss/base";
+@import "./custom/base.css";
+
+@import "tailwindcss/components";
+@import "./custom/components/components.css";
+
+@import "tailwindcss/utilities";
+@import "./custom/utilities.css";

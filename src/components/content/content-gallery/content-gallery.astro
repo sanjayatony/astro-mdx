@@ -1,0 +1,36 @@
+---
+const { component_id, heading, description, images } = Astro.props;
+const componentName = "content-gallery";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="py-8 md:py-24 wrapper sm:text-center">
+        <h2>
+            {heading}
+        </h2>
+        <p class="mt-4 lead">
+            {description}
+        </p>
+        <div class="gap-4 mt-8 sm:grid sm:grid-cols-4 sm:mt-12">
+            {
+                images &&
+                    images.length > 0 &&
+                    images.map((image, index) => (
+                        <img
+                            class={`${
+                                index === 0
+                                    ? "col-span-2 mb-4"
+                                    : index === 4
+                                      ? "col-span-2"
+                                      : "hidden col-span-1 sm:block"
+                            } sm:mb-0 rounded-lg`}
+                            src={image.image}
+                            alt={image.alt || "Image"}
+                            width={600}
+                            height={400}
+                        />
+                    ))
+            }
+        </div>
+    </div>
+</section>

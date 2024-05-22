@@ -1,0 +1,67 @@
+---
+const { component_id, heading, content_html, cta_link, cta_text, cards } = Astro.props;
+const componentName = "features-comparison-cards";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName} bg-gray-900`>
+    <section class="bg-gray-900">
+        <div class="py-8 md:py-24 wrapper">
+            <div class="grid space-y-8 lg:grid-cols-2 lg:gap-12 lg:space-y-0">
+                <div>
+                    <h2 class="text-white">{heading}</h2>
+                    <div
+                        class="mt-4 prose content-html text-white [&>p]:text-white"
+                        <Fragment
+                        set:html={content_html}
+                    />
+
+                    <a
+                        href={cta_link}
+                        class="mt-6 inline-flex items-center text-primary-600 hover:text-primary-700"
+                    >
+                        {cta_text}
+                        <svg
+                            class="ml-1 w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path></svg
+                        >
+                    </a>
+                </div>
+                <div>
+                    {
+                        cards &&
+                            cards.length > 0 &&
+                            cards.map((card, index) => (
+                                <a
+                                    href={cards.link}
+                                    class="flex justify-between items-center p-4 mb-6 bg-white rounded-lg border-l-8 shadow border-gray-300">
+                                    <div>
+                                        <span class="block mb-1 text-xs font-medium text-gray-500 uppercase dark:text-gray-400">
+                                            STEP {Number(index) + 1}
+                                        </span>
+                                        <h5 class="">{card.title}</h5>
+                                    </div>
+                                    <svg
+                                        class="w-6 h-6 text-primary-900"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                </a>
+                            ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

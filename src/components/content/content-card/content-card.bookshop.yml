@@ -1,0 +1,26 @@
+# Metadata about this component, to be used in the CMS
+spec:
+    structures:
+        - content_blocks
+    label: Content Cards
+    description: Content Cards
+    icon: "bolt"
+    tags: ["content", "cards"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+    component_id:
+    heading: "Turn collaboration into innovation"
+    subheading: "Explore the whole collection"
+    subheading_link:
+    cards:
+        - image_path:
+          title:
+          description:
+
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+    cards:
+        type: array

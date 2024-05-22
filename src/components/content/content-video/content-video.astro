@@ -1,0 +1,23 @@
+---
+const { component_id, heading, description, youtube_url } = Astro.props;
+import { YouTube } from "@astro-community/astro-embed-youtube";
+const componentName = "content-video";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-12 sm:text-center lg:py-16">
+        <h2>
+            {heading}
+        </h2>
+        <p class="mt-4 lead">
+            {description}
+        </p>
+        {
+            youtube_url && (
+                <div class="mx-auto mt-8 w-full max-w-2xl h-64 rounded-lg">
+                    <YouTube id={youtube_url} />
+                </div>
+            )
+        }
+    </div>
+</section>

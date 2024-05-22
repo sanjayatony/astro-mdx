@@ -1,0 +1,20 @@
+/* Can be applied to blocks of content */
+p.callout {
+	padding: 16px;
+	background: #f6f6f6;
+	border-radius: 4px;
+}
+
+/* Applied to content, excluded from style dropdown */
+.align-left {
+	text-align: left;
+}
+.align-center {
+	text-align: center;
+}
+.align-right {
+	text-align: right;
+}
+.align-justify {
+	text-align: justify;
+}

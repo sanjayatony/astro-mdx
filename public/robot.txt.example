@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# change the domain
+Sitemap: https://sevenfigurecreators.com/sitemap-index.xml

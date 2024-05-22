@@ -1,0 +1,39 @@
+---
+const { component_id, heading, cards, footer_textarea } = Astro.props;
+const componentName = "social-proof";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="py-8 md:py-24 wrapper" ">
+        <div class="mx-auto mb-8 max-w-screen-md text-center md:mb-16">
+            <h2 class="">
+                {heading}
+            </h2>
+        </div>
+        {
+            cards && cards.length > 0 && (
+                <div class="mb-4 space-y-4 md:grid md:grid-cols-3 md:gap-4 xl:gap-16 md:space-y-0 md:mb-8">
+                    {cards.map((card) => (
+                        <div class="flex justify-center items-center p-6 text-center bg-gray-100 rounded xl:p-12 dark:bg-gray-800">
+                            <div class="text-gray-900 dark:text-white">
+                                <p class="mb-2 text-4xl font-extrabold md:text-5xl">{card.stat}</p>
+                                <h3 class="mb-2">{card.title}</h3>
+                                <p class="">
+                                    {card.description}{" "}
+                                    <span class="font-medium text-primary-600 dark:text-primary-500">
+                                        *
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+
+        <p class="text-sm font-light text-center text-gray-500 dark:text-gray-400">
+            <span class="font-medium text-primary-600 dark:text-primary-500">*</span>
+            {footer_textarea}
+        </p>
+    </div>
+</section>

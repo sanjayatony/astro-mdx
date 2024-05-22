@@ -1,0 +1,89 @@
+{
+	"copyright": "All rights reserved.",
+	"sections": [
+		{
+			"heading": "high-risk payments",
+			"items": [
+				{
+					"link": "/merchant-services",
+					"text": "merchant services"
+				}
+			]
+		},
+		{
+			"heading": "Revenue Share Programs",
+			"items": [
+				{
+					"link": "/isv-sass-solutions",
+					"text": "ISV & SaaS Solutions"
+				},
+				{
+					"link": "/revenue-share-program",
+					"text": "Revenue Share Program"
+				}
+			]
+		},
+		{
+			"heading": "Company",
+			"items": [
+				{
+					"link": "case-studies",
+					"text": "case studies"
+				},
+				{
+					"link": "/industries",
+					"text": "Industries"
+				},
+				{
+					"link": "/contact-us",
+					"text": "Contact us"
+				},
+				{
+					"link": "/privacy-policy",
+					"text": "privacy policy"
+				},
+				{
+					"link": "/terms-conditions",
+					"text": "terms & conditions"
+				}
+			]
+		},
+		{
+			"heading": "Resources",
+			"items": [
+				{
+					"link": "/free-lead-magnet",
+					"text": "Free Lead Magnet"
+				},
+				{
+					"link": "/blog",
+					"text": "blog"
+				},
+				{
+					"link": "/integrations-solutions-hub",
+					"text": "Integrations & Solutions Hub"
+				},
+				{
+					"link": "/developer-api",
+					"text": "Developer API"
+				}
+			]
+		}
+	],
+	"socials": [
+		{
+			"link": "https://www.instagram.com/mycompany",
+			"icon": "Instagram"
+		},
+		{
+			"link": "https://www.facebook.com/mycompany",
+			"icon": "Facebook"
+		}
+	],
+	"form": {
+		"heading": "High-Risk Business owner? Learn the payment landscape.",
+		"description": "5 days, 5 email lessons: The need-to-know info for high-risk payment landscape in 2024.",
+		"button_text": "Free lead magnet!",
+		"footer_content_html": "By submitting this form, you confirm that you have read and agree to  Terms of Service and Privacy Statement"
+	}
+}

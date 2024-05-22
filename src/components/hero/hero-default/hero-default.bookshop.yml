@@ -1,0 +1,24 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Hero Default
+  description: Hero Default
+  icon: "bolt"
+  tags: ["hero", "default"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  component_id:
+  badge:
+    label: "New"
+    text: "Acme is out! See what's new"
+    url: "#"
+  heading: "We invest in the world's potential"
+  content: "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth."
+
+# Overrides any fields in the blueprint when viewing this component in the component browser
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:

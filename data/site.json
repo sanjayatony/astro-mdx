@@ -1,0 +1,62 @@
+{
+	"site_title": "XXXXX",
+	"description": "We help high-risk businesses get approved quickly with our next-gen high-risk merchant accounts. Our unfair advantages: speed, honesty and responsiveness.",
+	"logo_image": "",
+	"logo_additional_image": "",
+	"home_url": "/",
+	"favicon_image": "",
+	"twitter_site": "",
+	"image": "",
+	"image_alt": "",
+	"phone": "02 4384 1501",
+	"banner": {
+		"icon": "Burger",
+		"content_html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat <a href=\"https://astro.build\">nibh</a>. </p>",
+		"is_active": false
+	},
+	"subscription": {
+		"heading": "Subscribe to our newsletter",
+		"content": "Get the latest news and updates from Great Lakes delivered to your inbox."
+	},
+	"error_404": {
+		"heading": "404",
+		"content_textarea": "The page you are looking for does not exist.",
+		"image": "/uploads/undraw-taken-re-yn20.png",
+		"links": {
+			"text": "Here are some helpful links:",
+			"items": [
+				{
+					"link_text": "Home",
+					"link_url": "/"
+				},
+				{
+					"link_text": "Blog",
+					"link_url": "/"
+				}
+			]
+		}
+	},
+	"error_500": {
+		"heading": "500",
+		"content_textarea": "The page you are looking for does not exist.",
+		"image": "/images/404.svg",
+		"links": {
+			"text": "Here are some helpful links:",
+			"items": [
+				{
+					"link_text": "Home",
+					"link_url": "/"
+				},
+				{
+					"link_text": "Home",
+					"link_url": "/"
+				},
+				{
+					"link_text": "Home",
+					"link_url": "/"
+				}
+			]
+		}
+	},
+	"analytic_id": ""
+}

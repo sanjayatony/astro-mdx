@@ -1,0 +1,103 @@
+---
+import "@styles/tailwind.css";
+import site from "@data/site.json";
+import Header from "@layouts/Header.astro";
+import Footer from "@layouts/Footer.astro";
+import { SEO } from "astro-seo";
+import { AstroFont } from "astro-font";
+import { GoogleAnalytics } from "astro-analytics";
+
+export interface SEOProps {
+    page_description: string | null;
+    featured_image: string | null;
+    featured_image_alt: string | null;
+    canonical_url: string | null;
+    no_index: boolean | null;
+    open_graph_type: string | null;
+    author_twitter_handle: string | null;
+}
+
+export interface Props {
+    title: string;
+    seo?: SEOProps;
+}
+
+const { seo } = Astro.props;
+const baseUrl = Astro.site;
+const title = Astro.props.title ? `${Astro.props.title} | ${site.site_title}` : site.site_title;
+const description = seo?.page_description || site.description;
+const image = seo?.featured_image || site.image;
+const image_alt = seo?.featured_image_alt || site.image_alt;
+const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
+const bodyClass =
+    "page-" +
+    Astro.props.title
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        {site.anaylytic_id && <GoogleAnalytics id={site.analytic_id} />}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href={site.favicon_image} />
+
+        <meta name="generator" content={Astro.generator} />
+
+        <AstroFont
+            config={[
+                {
+                    src: [],
+                    name: "Inter",
+                    // Google Fonts URL
+                    googleFontsURL:
+                        "https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@50..200,200..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+                    preload: true,
+                    display: "swap",
+                    selector: "body",
+                    fallback: "sans-serif",
+                },
+            ]}
+        />
+
+        <SEO
+            noindex={seo?.no_index || false}
+            title={title}
+            description={description}
+            canonical={canonicalURL.toString()}
+            openGraph={{
+                basic: {
+                    title: Astro.props.title,
+                    url: baseUrl?.toString(),
+                    type: `${seo?.open_graph_type || "website"}`,
+                    image: image,
+                },
+                optional: {
+                    description: description,
+                },
+                image: {
+                    url: image,
+                    alt: image_alt,
+                },
+            }}
+            twitter={{
+                creator: `${seo?.author_twitter_handle || site.twitter_site}`,
+                site: `${site.twitter_site}`,
+                card: "summary_large_image",
+            }}
+        />
+    </head>
+    <body class=`${bodyClass}`>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+        <script
+            is:inline
+            src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+    </body>
+</html>

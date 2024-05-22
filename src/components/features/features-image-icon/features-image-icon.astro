@@ -1,0 +1,67 @@
+---
+const { component_id, image, heading, content_textarea, list, footer_textarea } = Astro.props;
+const componentName = "features-image-icon";
+import { Image } from "astro:assets";
+import { getImageSrc } from "@helper/imageSrc";
+
+const src = getImageSrc(image.image_path);
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div
+        class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 xl:gap-16 sm:py-16 lg:px-6"
+    >
+        <Image
+            class="mb-4 w-full lg:mb-0 rounded-lg"
+            src={src}
+            alt={image.alt_text}
+            width={1000}
+            height={600}
+        />
+        <div class="text-gray-500 dark:text-gray-400 sm:text-lg">
+            <h2>
+                {heading}
+            </h2>
+            <p class="mt-4">
+                {content_textarea}
+            </p>
+            {
+                list && list.length > 0 && (
+                    <div class="mt-8 py-8 mb-6 border-t border-b border-gray-200 dark:border-gray-700">
+                        {list.map((item) => (
+                            <div class="flex">
+                                <div class="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 shrink-0">
+                                    <img
+                                        src={item.icon_image}
+                                        class="w-5 h-5 text-primary-600 dark:text-primary-300"
+                                    />
+                                </div>
+                                <div>
+                                    <h3>{item.title}</h3>
+                                    <p class="mt-2">{item.description}</p>
+                                    <a href={item.link} class="mt-2 inline-flex items-center">
+                                        Learn more
+                                        <svg
+                                            class="ml-1 w-6 h-6"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
+            <p class="text-sm">
+                {footer_textarea}
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+{
+	"items": [
+		{
+			"link": "/company",
+			"text": "company"
+		},
+		{
+			"link": "/marketplace",
+			"text": "marketplace"
+		},
+		{
+			"link": "/features",
+			"text": "features"
+		},
+		{
+			"link": "/team",
+			"text": "team"
+		},
+		{
+			"link": "/contact",
+			"text": "contact"
+		}
+	],
+	"additional_items": [
+		{
+			"link": "/login",
+			"text": "login"
+		},
+		{
+			"link": "/get-started",
+			"text": "get started",
+			"is_button": true
+		}
+	]
+}

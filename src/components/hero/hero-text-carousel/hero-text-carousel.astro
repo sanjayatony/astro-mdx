@@ -1,0 +1,123 @@
+---
+const { component_id, heading, content_textarea, buttons, partners, carousel_images } = Astro.props;
+const componentName = "hero-text-carousel";
+import { Image } from "astro:assets";
+import { getImageSrc } from "@helper/imageSrc";
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="grid py-8 md:py-24 wrapper lg:gap-24 lg:grid-cols-12 items-center">
+        <div class="mr-auto place-self-center lg:col-span-6">
+            <h1 class="max-w-2xl">
+                {heading}
+            </h1>
+            <p class="max-w-2xl mt-4">
+                {content_textarea}
+            </p>
+
+            {
+                buttons && buttons.length > 0 && (
+                    <div class="flex items-center my-6 mt-6">
+                        {buttons.map((button) =>
+                            button.is_primary ? (
+                                <a href={button.link} class="button primary">
+                                    {button.text}
+                                </a>
+                            ) : (
+                                <a href={button.link} class="button white">
+                                    {button.text}
+                                </a>
+                            ),
+                        )}
+                    </div>
+                )
+            }
+
+            <div class="my-8 lg:my-16 border-t border-gray-300 space-y-8 pt-8">
+                <p class="max-w-2xl mb-6 lead">Partners:</p>
+                {
+                    partners && partners.length > 0 && (
+                        <div class="flex flex-wrap gap-4">
+                            {partners.map((partner) => (
+                                <img
+                                    class="w-auto h-12 "
+                                    src={partner.image}
+                                    alt={partner.alt || "Partner Logo"}
+                                    height="48"
+                                    width="48"
+                                />
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+
+        {
+            carousel_images && carousel_images.length > 0 && (
+                <div id="hero-carousel" class="relative lg:col-span-6" data-carousel="slide">
+                    <div class="overflow-x-hidden overflow-y-visible relative mx-auto max-w-screen-md h-96">
+                        {carousel_images.map((item) => {
+                            const src = getImageSrc(item.image_path);
+                            return (
+                                <div class="w-full max-w-screen-md" data-carousel-item>
+                                    <img
+                                        src={src}
+                                        class="object-cover w-full h-full rounded-lg"
+                                        alt={item.alt || "Carousel Image"}
+                                        width="600"
+                                        height="400"
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <button
+                        type="button"
+                        aria-label="Previous"
+                        class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                        data-carousel-prev="">
+                        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-white/30 bg-gray-800/30 dark:group-hover:bg-white/50 group-hover:bg-gray-800/60 group-focus:ring-4 dark:group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg
+                                class="w-5 h-5 text-white sm:w-6 sm:h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+                            <span class="hidden">Previous</span>
+                        </span>
+                    </button>
+                    <button
+                        type="button"
+                        aria-label="Next"
+                        class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                        data-carousel-next="">
+                        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-white/30 bg-gray-800/30 dark:group-hover:bg-white/50 group-hover:bg-gray-800/60 group-focus:ring-4 dark:group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg
+                                class="w-5 h-5 text-white sm:w-6 sm:h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                            <span class="hidden">Next</span>
+                        </span>
+                    </button>
+                </div>
+            )
+        }
+    </div>
+</section>

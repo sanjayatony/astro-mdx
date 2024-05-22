@@ -1,0 +1,12 @@
+/**
+ * Custom `@font-face` rules
+ *
+ * These will be added immediately before Tailwind’s `base` layer.
+ */
+/* @font-face {
+	font-family: "Faro";
+	src: url("/fonts/Faro-BoldLucky.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+} */

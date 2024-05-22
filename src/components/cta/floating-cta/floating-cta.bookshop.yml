@@ -1,0 +1,24 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Floating CTA
+  description: Floatin CTA
+  icon: "bolt"
+  tags: ["cta", "floating"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  component_id:
+  heading:
+    first_part: "We didn't reinvent the wheel"
+    second_part: "We just made it float"
+  cta_link:
+  cta_text:
+
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  ctas:
+    type: array

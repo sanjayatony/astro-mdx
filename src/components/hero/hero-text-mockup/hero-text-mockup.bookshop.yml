@@ -1,0 +1,36 @@
+# Metadata about this component, to be used in the CMS
+spec:
+    structures:
+        - content_blocks
+    label: Hero with Rating and Cover
+    description: Hero with Rating and Cover
+    icon: "bolt"
+    tags: ["hero", "rating", "cover"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+    component_id:
+    heading: "Payments tool for software companies"
+    content_textarea: "From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack."
+    buttons:
+        - text: "Get started"
+          link: "#"
+          is_primary: true
+    rating:
+        value: "4.9"
+        star_count: 5
+        text: "Based on 1,200+ reviews"
+        url: "#"
+    cover:
+        image_path:
+        alt_text:
+
+# Overrides any fields in the blueprint when viewing this component in the component browser
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+    buttons:
+        type: array
+    star_count:
+        type: number

@@ -1,0 +1,31 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Pricing Cards Slider
+  description: Pricing Cards Slider
+  icon: "bolt"
+  tags: ["pricing", "cards", "slider"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  component_id:
+  heading: "Designed for business teams like yours"
+  description: "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth."
+  cards:
+    - title:
+      description:
+      price:
+      cta: "Get started"
+      link: "#"
+      items:
+        - text:
+
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  cards:
+    type: array
+  items:
+    type: array

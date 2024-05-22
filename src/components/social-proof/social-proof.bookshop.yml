@@ -1,0 +1,25 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Social Proof Cards
+  description: Social Proof Cards
+  icon: "bolt"
+  tags: ["social proof", "cards"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  component_id:
+  heading: "Transformation by the numbers"
+  cards:
+    - stat:
+      title:
+      description:
+  footer_textarea:
+
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  cards:
+    type: array

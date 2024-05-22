@@ -1,0 +1,54 @@
+---
+const { component_id, heading, content_html, testimonials } = Astro.props;
+const componentName = "testimonials-card";
+let content = "";
+for (let i = 0; i < testimonials.length; i++) {
+    if (i % 3 === 0) {
+        content += `<div class="space-y-6">`;
+    }
+    content += `<figure class="p-6 bg-gray-50 rounded dark:bg-gray-800">
+		<blockquote class="text-sm text-gray-500 dark:text-gray-400">
+			<h3 class="">
+				${testimonials[i].title}
+			</h3>
+			<p class="my-4">"${testimonials[i].description}"</p>
+		</blockquote>
+		<figcaption class="flex items-center space-x-3">
+			<img
+				class="w-9 h-9 rounded-full"
+				src=${testimonials[i].image}
+				alt=${testimonials[i].name}
+			/>
+			<div class="space-y-0.5 font-medium dark:text-white">
+				<div>${testimonials[i].name}</div>
+				<div class="text-sm font-light text-gray-500 dark:text-gray-400">
+					${testimonials[i].position}
+				</div>
+			</div>
+		</figcaption>
+	</figure>`;
+    if (i % 3 === 2 || i === testimonials.length - 1) {
+        content += "</div>\n";
+    }
+}
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-md text-center">
+            <h2 class="mb-4">
+                {heading}
+            </h2>
+            <div class="mb-8 prose content-html">
+                <Fragment set:html={content_html} />
+            </div>
+        </div>
+        {
+            testimonials && testimonials.length > 1 && (
+                <div class="grid gap-8 lg:grid-cols-3 prose content-html">
+                    <Fragment set:html={content} />
+                </div>
+            )
+        }
+    </div>
+</section>

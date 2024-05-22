@@ -1,0 +1,39 @@
+---
+const { heading, cards, footer_textarea } = Astro.props;
+const categories = [
+	{ icon: "/icons/computer-classic.svg", title: "Laptops & Computers" },
+	{ icon: "/icons/tv.svg", title: "TV" },
+	{ icon: "/icons/tablet.svg", title: "Tablets" },
+	{ icon: "/icons/headphone.svg", title: "Audio" },
+	{ icon: "/icons/printer.svg", title: "Printers" },
+	{ icon: "/icons/keyboard.svg", title: "Computer Accesories" },
+	{ icon: "/icons/finger-print.svg", title: "Security & Wi-Fi" },
+	{ icon: "/icons/coupon.svg", title: "Deals" },
+];
+---
+
+<section class="bg-white dark:bg-gray-900">
+	<div class="px-4 py-8 mx-auto max-w-screen-xl sm:py-16 lg:px-6 xl:px-0">
+		<div class="mb-8 md:mb-16 flex justify-between items-center">
+			<h2 class="">Categories that might interest you</h2>
+			<a
+				href="#"
+				class="text-sm"
+				>See more</a
+			>
+		</div>
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+			{
+				categories.map((category) => (
+					<div class="flex flex-col justify-center items-center p-6 text-center bg-gray-50 rounded xl:p-12 border border-gray-100">
+						<img
+							src={category.icon}
+							class="w-10 h-10"
+						/>
+						<strong>{category.title}</strong>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

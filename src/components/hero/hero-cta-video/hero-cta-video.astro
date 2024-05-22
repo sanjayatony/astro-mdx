@@ -1,0 +1,144 @@
+---
+const {
+    component_id,
+    subheading,
+    heading,
+    content_description,
+    cta_text,
+    cta_link,
+    footer_text,
+    video_image,
+    video_url,
+    rating_text,
+} = Astro.props;
+const componentName = "hero-cta-video";
+import { Image } from "astro:assets";
+import { getImageSrc } from "@helper/imageSrc";
+
+const src = getImageSrc(video_image.image_path);
+---
+
+<section {...component_id ? { id: component_id } : {}} class=`${componentName}`>
+    <div class="wrapper py-8 md:py-24 text-center">
+        <div class="text-primary-500 font-medium text-sm md:text-base">
+            {subheading}
+        </div>
+        <h1 class="mt-2 max-w-xs md:max-w-[1080px] mx-auto">
+            {heading.before_highlighted}
+            <span class="relative inline">
+                {heading.highlighted}
+            </span>
+            {heading.after_highlighted}
+        </h1>
+        <p class="mt-2 md:mt-8 lead max-w-2xl mx-auto">
+            {content_description}
+        </p>
+        <a href={cta_link} class="mt-8 md:mt-10 button primary xl" id="hero-cta">{cta_text}</a>
+        <p class="mt-3 text-center">
+            {footer_text}
+        </p>
+
+        <div id="videoCover" class="max-w-4xl mx-auto mt-8 md:mt-16 relative">
+            <Image
+                src={src}
+                alt="video cover"
+                width="896"
+                height="500"
+                class="w-full rounded-2xl"
+                id="video-image"
+            />
+            <button
+                aria-label="Play video"
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            >
+                PLAY
+            </button>
+        </div>
+        <div id="videoIframe" class="mt-4 md:mt-16 max-w-4xl mx-auto hidden">
+            <iframe
+                class="w-full aspect-video rounded-2xl mx-auto"
+                src={video_url}
+                loading="lazy"
+                frameborder="0"
+                webkitallowfullscreen
+                mozallowfullscreen
+                allowfullscreen></iframe>
+        </div>
+        <div class="mt-16 hidden md:block">
+            <span>{rating_text}</span>
+            <div class="mt-4 flex items-center justify-center divide-x divide-gray-200 gap-4">
+                <div class="flex -space-x-4">
+                    <Image
+                        class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                        src="/uploads/bonnie-green_100x100.webp"
+                        alt="bonnie avatar"
+                        width="40"
+                        height="40"
+                    />
+                    <Image
+                        class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                        src="/uploads/jese-leos_100x100.webp"
+                        alt="jese avatar"
+                        width="40"
+                        height="40"
+                    />
+                    <Image
+                        class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                        src="/uploads/sofia-mcguire_100x100.webp"
+                        alt="leslie avatar"
+                        width="40"
+                        height="40"
+                    />
+                    <Image
+                        class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800"
+                        src="/uploads/thomas-lean_100x100.webp"
+                        alt="thomas avatar"
+                        width="40"
+                        height="40"
+                    />
+                </div>
+
+                <div class="flex flex-col gap-2 items-center pl-4">
+                    <div class="flex flex-row gap-1">
+                        {
+                            Array.from({ length: 5 }, (_, i) => (
+                                <svg
+                                    class="w-4 h-4 fill-yellow-300"
+                                    viewBox="0 0 16 17"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_548_163314)">
+                                        <path d="M15.9385 6.5179C15.8687 6.29021 15.7387 6.08768 15.5636 5.93356C15.3884 5.77945 15.1751 5.68 14.9482 5.64663L10.9074 5.03407L9.10022 1.21432C8.99895 0.999927 8.84216 0.819393 8.64762 0.69315C8.45308 0.566908 8.22854 0.5 7.99943 0.5C7.77032 0.5 7.54579 0.566908 7.35124 0.69315C7.1567 0.819393 6.99992 0.999927 6.89865 1.21432L5.09147 5.03407L1.05072 5.64663C0.824147 5.68111 0.611332 5.78099 0.436302 5.93498C0.261272 6.08897 0.130998 6.29095 0.0601918 6.5181C-0.0106144 6.74525 -0.0191329 6.98853 0.0355982 7.22046C0.0903293 7.4524 0.20613 7.66375 0.369924 7.83066L3.29469 10.8042L2.6043 15.002C2.56494 15.2376 2.58972 15.48 2.67582 15.7016C2.76193 15.9233 2.9059 16.1153 3.09139 16.2559C3.27688 16.3964 3.49644 16.4799 3.72512 16.4968C3.95381 16.5137 4.18245 16.4633 4.38508 16.3514L7.99943 14.3694L11.6138 16.3514C11.8165 16.4623 12.0449 16.5119 12.2732 16.4945C12.5014 16.4772 12.7205 16.3937 12.9057 16.2533C13.0909 16.113 13.2348 15.9215 13.3212 15.7004C13.4075 15.4793 13.433 15.2374 13.3946 15.002L12.7042 10.8042L15.6289 7.82982C15.7936 7.66362 15.9099 7.45238 15.9647 7.22033C16.0194 6.98828 16.0104 6.74483 15.9385 6.5179Z" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_548_163314">
+                                            <rect
+                                                width="16"
+                                                height="16"
+                                                fill="white"
+                                                transform="translate(0 0.5)"
+                                            />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            ))
+                        }
+                    </div>
+                    <span class="text-sm font-medium">Earning More $ </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script is:inline>
+    const playButton = document.getElementById("play-button");
+
+    const videoImage = document.getElementById("video-image");
+    const videoIframe = document.getElementById("videoIframe");
+    const videoCover = document.getElementById("videoCover");
+
+    playButton.addEventListener("click", () => {
+        videoCover.classList.add("hidden");
+        videoIframe.classList.remove("hidden");
+    });
+</script>

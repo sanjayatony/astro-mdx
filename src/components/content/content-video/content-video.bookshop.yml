@@ -1,0 +1,20 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Content Video
+  description: Content Video
+  icon: "bolt"
+  tags: ["content", "video"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  component_id:
+  heading: "We didn't reinvent the wheel"
+  description: "We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need."
+  youtube_url: "https://www.youtube.com/watch?v=6ZfuNTqbHE8"
+
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:

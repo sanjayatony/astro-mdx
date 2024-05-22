@@ -1,0 +1,53 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Contact Form with Background
+  description: Contact Form with Background
+  icon: "bolt"
+  tags: ["contact", "background"]
+
+# Defines the structure of this component, as well as the default valuesq
+blueprint:
+  component_id:
+  heading: "Contact Us"
+  content: "We use an agile approach to test assumptions and connect with the needs of your audience early and often."
+  button:
+    label: "Get started"
+    url: "#"
+  background_image:
+  form:
+    first_name:
+      label: "First Name"
+      placeholder: "First Name"
+    last_name:
+      label: "Last Name"
+      placeholder: "Last Name"
+    email:
+      label: "Email"
+      placeholder: "Email"
+    phone:
+      label: "Phone"
+      placeholder: "Phone"
+    message:
+      label: "Message"
+      placeholder: "Message"
+    submit:
+      label: "Submit"
+
+  contacts:
+    - image:
+      title:
+      content_textarea:
+      cta:
+        label:
+        url:
+        is_button: false
+
+# Overrides any fields in the blueprint when viewing this component in the component browser
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  contacts:
+    type: array

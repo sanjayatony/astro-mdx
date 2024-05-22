@@ -1,0 +1,23 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - content_blocks
+  label: Faq Accordion
+  description: Faq Accordion
+  icon: "bolt"
+  tags: ["faq", "accordion"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+  component_id:
+  heading: "Frequently asked questions"
+  items:
+    - question:
+      answer_html:
+
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  items:
+    type: array

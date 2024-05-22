@@ -1,0 +1,32 @@
+# Metadata about this component, to be used in the CMS
+spec:
+    structures:
+        - content_blocks
+    label: Hero CTA Video
+    description: Hero with CTA and Video embed
+    icon: "bolt"
+    tags: ["hero", "cta", "video"]
+
+# Defines the structure of this component, as well as the default values
+blueprint:
+    component_id:
+    subheading: "Subheading"
+    heading:
+        before_highlighted: "We invest in the world's potential"
+        highlighted: "together"
+        after_highlighted: "with you"
+    content_description: "Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth."
+    cta_text: "Get started"
+    cta_link: "#"
+    footer_text: "Watch the video"
+    video_url: "https://www.youtube.com/embed/7e90gBu4pas"
+    video_image:
+        image_path:
+        alt_text:
+    rating_text: "Trusted by 1000+ businesses"
+
+# Overrides any fields in the blueprint when viewing this component in the component browser
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:

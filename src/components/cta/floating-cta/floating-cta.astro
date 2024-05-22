@@ -1,0 +1,59 @@
+---
+const { component_id, heading, cta_link, cta_text } = Astro.props;
+const componentName = "floating-cta";
+---
+
+<section
+    {...component_id ? { id: component_id } : {}}
+    class=`${componentName} pt-8 md:pt-24 pb-6 md:pb-16`
+>
+    <div
+        class="border-0 md:border border-primary-500 rounded-none md:rounded-full flex flex-col md:flex-row items-center justify-between p-4 pl-4 m md:pl-12 bg-white max-w-screen-lg mx-auto"
+    >
+        <h2 class="hidden md:block">
+            {heading.first_part}
+            <span class="text-primary-500">{heading.second_part}</span>
+        </h2>
+        <a href={cta_link} class="button primary xl w-full md:w-auto">
+            {cta_text}
+        </a>
+    </div>
+</section>
+
+<section id={componentClass} class="fixed w-full bottom-0 md:bottom-8">
+    <div
+        class="border-0 md:border border-primary-500 rounded-none md:rounded-full flex flex-col md:flex-row items-center justify-between p-4 pl-4 md:pl-12 bg-white max-w-screen-lg mx-auto"
+    >
+        <h2 class="hidden md:block">
+            {heading.first_part}
+            <span class="text-primary-500">{heading.second_part}</span>
+        </h2>
+        <a href={cta_link} class="button primary xl w-full md:w-auto">
+            {cta_text}
+        </a>
+    </div>
+</section>
+
+<script is:inline>
+    const floatingCta = document.getElementById("floating-cta");
+
+    const showAfterPx = 500;
+
+    floatingCta.classList.add("slide-in");
+
+    window.onscroll = function () {
+        if (window.innerWidth > 768) {
+            if (window.pageYOffset > 450 && window.pageYOffset < 5933) {
+                floatingCta.classList.add("show");
+            } else {
+                floatingCta.classList.remove("show");
+            }
+        } else {
+            if (window.pageYOffset > 800 && window.pageYOffset < 7570) {
+                floatingCta.classList.add("show");
+            } else {
+                floatingCta.classList.remove("show");
+            }
+        }
+    };
+</script>

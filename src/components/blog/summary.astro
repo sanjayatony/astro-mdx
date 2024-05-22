@@ -1,0 +1,70 @@
+---
+const { post } = Astro.props;
+const {
+	data: { title, author, published_date, categories, tags, seo },
+	slug,
+} = post;
+const dateObj = new Date(published_date);
+import { Image } from "astro:assets";
+import { getImageSrc } from "@helper/imageSrc";
+const src = seo.featured_image ? getImageSrc(seo.featured_image) : null;
+---
+
+<article
+	class="p-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+	<a href={`/blog/${slug}`}>
+		{
+			seo?.featured_image && (
+				<Image
+					class="mb-5 rounded-lg"
+					src={src}
+					alt={seo.featured_image_alt | title}
+					width={800}
+					height={600}
+				/>
+			)
+		}
+	</a>
+	{
+		tags &&
+			tags.length > 0 &&
+			tags.slice(0, 2).map((tag, i) => {
+				{
+					tag && (
+						<span class="bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-purple-200 dark:text-purple-900">
+							<a href={`/tags/${tag.toLowerCase()}`}>
+								{tag[0].toUpperCase() + tag.slice(1)}
+							</a>
+						</span>
+					);
+				}
+			})
+	}
+
+	<h2 class="my-2">
+		<a href={`/blog/${slug}`}>{title}</a>
+	</h2>
+	{seo?.page_description && <p class="mb-4">{seo.page_description}</p>}
+	<div class="flex items-center space-x-4">
+		<Image
+			class="w-10 h-10 rounded-full"
+			src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+			alt="Jese Leos avatar"
+			width={40}
+			height={40}
+		/>
+		<div class="font-medium dark:text-white">
+			<div>{author}</div>
+			<div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+				{" "}
+				{
+					dateObj.toLocaleDateString(undefined, {
+						year: "numeric",
+						month: "long",
+						day: "numeric",
+					})
+				}
+			</div>
+		</div>
+	</div>
+</article>

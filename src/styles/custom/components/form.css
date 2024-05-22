@@ -1,0 +1,4 @@
+input[type="text"],
+input[type="email"] {
+    @apply block w-full p-3 text-sm text-gray-900 border border-gray-200 rounded-md focus:ring-gray-300 focus:border-gray-300;
+}

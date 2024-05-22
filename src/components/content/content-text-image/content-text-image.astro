@@ -1,0 +1,71 @@
+---
+const block = Astro.props;
+const componentName = "content-text-image";
+import { Image } from "astro:assets";
+import { getImageSrc } from "@helper/imageSrc";
+
+const src = getImageSrc(block.image.image_path);
+---
+
+<section
+	{...block.component_id ? { id: block.component_id } : {}}
+	class=`${componentName} wrapper wide mt-8 md:mt-0`>
+	<div class="bg-gray-50 py-8 md:py-24 rounded-4xl px-4">
+		<div class="wrapper">
+			<div
+				class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-16">
+				<div
+					class:list={[
+						"w-full",
+						"md:w-1/2",
+						block.image.image_position == "left" ? "order-1" : "order-2",
+					]}>
+					{
+						ENV_BOOKSHOP_LIVE ? (
+							<img
+								src={block.image.image_path}
+								alt={block.image.alt_text}
+							/>
+						) : (
+							<Image
+								alt={block.image.alt_text}
+								widths={[320, 500, 640]}
+								sizes={`(max-width: 640px) 320px, (max-width: 960px) 500px, (max-width: 1280px) 640px`}
+								src={src}
+							/>
+						)
+					}
+				</div>
+				<div
+					class:list={[
+						"w-full",
+						"md:w-1/2",
+						block.image_position == "left" ? "order-2" : "order-1",
+					]}>
+					{
+						block.subheading && (
+							<div class="text-gray-500 uppercase mb-2">{block.subheading}</div>
+						)
+					}
+					<h2 class="font-heading">{block.heading}</h2>
+					{
+						block.description_html && (
+							<div class="mt-4 prose content-html">
+								<Fragment set:html={block.description_html} />
+							</div>
+						)
+					}
+					{
+						block.cta.text && (
+							<a
+								href={block.cta.link}
+								class="button primary mt-6">
+								{block.cta.text}
+							</a>
+						)
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

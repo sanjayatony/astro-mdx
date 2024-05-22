@@ -1,0 +1,40 @@
+---
+import Layout, { type Props as LayoutProps } from "@layouts/Layout.astro";
+import Products from "@components/products/products";
+import HighlightedProducts from "@components/products/highlighted-products";
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+    const posts = await getCollection("products");
+    const page = await getEntryBySlug("pages", "products");
+    return paginate(posts, { pageSize: page.data.page_size });
+}
+
+const page = await getEntryBySlug("pages", "products");
+const frontmatter = page.data as LayoutProps;
+const pagination = Astro.props.page;
+const { data: posts } = pagination;
+
+let title = "";
+if (!page.data) {
+    title = page.title;
+} else {
+    title = page.data.title;
+}
+
+let description = "";
+if (page.data.description) {
+    description = page.data.description;
+} else {
+    description = page.data.seo.page_description;
+}
+---
+
+<Layout {...frontmatter}>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <HighlightedProducts posts={posts} />
+            <Products posts={posts} client:only />
+        </div>
+    </section>
+</Layout>
